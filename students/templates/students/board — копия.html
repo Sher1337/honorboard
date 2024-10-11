@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Виртуальная Доска Почета</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Кастомные стили -->
+    <style>
+        /* Темная тема с фиолетовыми акцентами */
+        body {
+            background-color: #1a1a1a;
+            color: #e4e4e4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            margin-top: 60px;
+            margin-bottom: 60px;
+        }
+
+        /* Шапка сайта */
+        header {
+            background-color: #2e2b3a;
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            color: #ffffff;
+            text-align: center;
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        /* Скругленные карточки с тенями */
+        .card {
+            background-color: #2c2c2c;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-title {
+            color: #c3a6ff;
+            font-size: 1.25rem;
+        }
+
+        .card-text {
+            color: #e4e4e4;
+        }
+
+        .card img {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2e2b3a;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: #c3a6ff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+        }
+
+        footer .icon {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка сайта -->
+    <header>
+        <h1>Виртуальная Доска Почета</h1>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            {% for student in students %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    {% if student.photo %}
+                    <img src="{{ student.photo.url }}" class="card-img-top" alt="{{ student.first_name }} {{ student.last_name }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ student.first_name }} {{ student.last_name }}</h5>
+                        <p class="card-text">
+                            <strong>Номинации:</strong>
+                            <ul>
+                                {% for nomination in student.nominations.all %}
+                                <li>{{ nomination.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Перейти на 
+            <a href="https://www.google.com" target="_blank">
+                <span class="icon">🌐</span> Google
+            </a>
+        </p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
