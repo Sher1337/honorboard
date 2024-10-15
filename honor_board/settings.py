@@ -25,6 +25,8 @@ SECRET_KEY = 'django-insecure-!a^o#uvjf367w5rud$v^_(^_xxg%djs!pm15akzw77+2x#!yv4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+#ALLOWED_HOSTS = ['88.205.135.19', 'sbind.ru']
+
 ALLOWED_HOSTS = []
 
 # Включаем приложение
@@ -45,6 +47,10 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Настройки статических файлов
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static'] 
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://sbind.ru',
+]
 
 
 MIDDLEWARE = [
@@ -125,8 +131,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

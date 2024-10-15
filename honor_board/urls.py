@@ -21,7 +21,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # Добавляем корневой маршрут, который будет вести на доску почета
     path('', student_views.board_view, name='home'),
     path('students/', include('students.urls')),
 ]
